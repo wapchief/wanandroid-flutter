@@ -1,8 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:wan_android/page/details/details.dart';
 import 'package:wan_android/page/home/state.dart';
 import 'package:wan_android/utils/base.dart';
+
+import 'action.dart';
 
 Widget buildView(HomeState state, Dispatch dispatch, ViewService service) {
 //  final adapter = service.buildAdapter();
@@ -21,6 +24,14 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService service) {
                       fit: BoxFit.fill,
                     );
                   },
+                  onTap: (i) {
+                    //进详情
+//                    HomeActionCreator.onJumpDetail(state.listBanner[i]);
+                    Navigator.push<String>(service.context,
+                        MaterialPageRoute(builder: (BuildContext context) {
+                      return Details(url: state.listBanner[i].url);
+                    })).then((String res) {});
+                  },
                   autoplay: true,
                   itemCount: state.listBanner == null ? 0 : state.listBanner.length,
                   pagination: new SwiperPagination(),
@@ -28,7 +39,49 @@ Widget buildView(HomeState state, Dispatch dispatch, ViewService service) {
                 ),
           height: 200.0,
         ),
-
+        state.articleData == null ||
+                state.articleData.datas == null ||
+                state.articleData.datas.length == 0
+            ? Container()
+            : ListView.builder(
+                shrinkWrap: true,
+                physics: new NeverScrollableScrollPhysics(),
+                itemCount: state.articleData.datas.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    padding: EdgeInsets.all(20.0),
+                    decoration: BaseTheme.BOX_DECORATION_DIVIDER,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          state.articleData.datas[index].title,
+                          style: BaseTheme.STYLE_TEXT_15_WEIGHT,
+                        ),
+                        SizedBox(
+                          height: 8.0,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              state.articleData.datas[index].author == ''
+                                  ? '分享人：' + state.articleData.datas[index].shareUser
+                                  : '作者：' + state.articleData.datas[index].author,
+                              style: BaseTheme.STYLE_TEXT_SUMMARY_12,
+                            ),
+                            Text(state.articleData.datas[index].chapterName +
+                                '/' +
+                                state.articleData.datas[index].superChapterName+
+                                '   '+state.articleData.datas[index].niceDate,
+                              style: BaseTheme.STYLE_TEXT_SUMMARY_12,
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                })
       ],
     ),
   );

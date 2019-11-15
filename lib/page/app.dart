@@ -34,7 +34,7 @@ class _MyHomePageState extends State<AppPage> with AutomaticKeepAliveClientMixin
 
   static List tabData = [
     {
-      'text': 'WanAndroid-flutter',
+      'text': '首页',
       'icon': Icon(Icons.home,color: Color(BaseTheme.BASE_COLOR),),
       'activeIcon': Icon(Icons.home,color: Color(0xffCDCDD7),),
     },

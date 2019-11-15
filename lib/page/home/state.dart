@@ -1,9 +1,13 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:wan_android/component/item/state.dart';
+import 'package:wan_android/model/article_entity.dart';
 
 class HomeState implements Cloneable<HomeState> {
   List<BannerState> listBanner;
   List<ItemState> listArt;
+  DatasEntity articleData;
+
+//  ValueChanged<BannerState> onBanner;
 
   HomeState({this.listBanner, this.listArt});
 
@@ -12,7 +16,10 @@ class HomeState implements Cloneable<HomeState> {
     // TODO: implement clone
     return HomeState()
       ..listBanner = listBanner
-      ..listArt = listArt;
+      ..listArt = listArt
+      ..articleData = articleData;
+
+//      ..onBanner = onBanner;
   }
 }
 
@@ -22,7 +29,6 @@ HomeState initState(Map<String, dynamic> args) {
 
 //轮播
 class BannerState implements Cloneable<BannerState> {
-
   String imagePath;
   int id;
   int isVisible;
@@ -32,7 +38,15 @@ class BannerState implements Cloneable<BannerState> {
   String desc;
   int order;
 
-  BannerState({this.imagePath, this.id, this.isVisible, this.title, this.type, this.url, this.desc, this.order});
+  BannerState(
+      {this.imagePath,
+      this.id,
+      this.isVisible,
+      this.title,
+      this.type,
+      this.url,
+      this.desc,
+      this.order});
 
   BannerState.fromJson(Map<String, dynamic> json) {
     imagePath = json['imagePath'];

@@ -1,5 +1,6 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:wan_android/component/item/state.dart';
+import 'package:wan_android/model/article_entity.dart';
 
 import 'action.dart';
 import 'state.dart';
@@ -9,9 +10,18 @@ Reducer<HomeState> buildReducer() {
     <Object, Reducer<HomeState>>{
       HomeAction.loadData: _onLoadData,
       HomeAction.getBanner: _getBanner,
+      HomeAction.getArticle:_getArticle,
     },
   );
 }
+
+HomeState _getArticle(HomeState state,Action action){
+  final DatasEntity dataEntity = action.payload ?? DatasEntity();
+  final HomeState newState = state.clone();
+  newState.articleData = dataEntity;
+  return newState;
+}
+
 
 HomeState _getBanner(HomeState state, Action action) {
   final List<BannerState> toDos = action.payload ?? <BannerState>[];

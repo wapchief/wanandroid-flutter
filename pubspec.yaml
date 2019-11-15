@@ -36,7 +36,7 @@ dependencies:
   # 网络请求
   dio: ^2.1.13
   # 加载web
-  flutter_widget_from_html: ^0.2.4+2
+  flutter_webview_plugin: 0.3.7
 
 dev_dependencies:
   flutter_test:

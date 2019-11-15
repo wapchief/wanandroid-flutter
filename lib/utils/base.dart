@@ -1,10 +1,9 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_easyrefresh/material_header.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class BaseTheme{
+class BaseTheme {
   //通用的Appbar
   static getAppBar(String text) {
     return AppBar(
@@ -24,25 +23,38 @@ class BaseTheme{
   //黑色字体
   static const BASE_TEXT = 0xff22242a;
 
+  //底部分割线
+  static const BOX_DECORATION_DIVIDER = BoxDecoration(
+      color: Colors.white, border: Border(bottom: BorderSide(color: Color(0xfff1f3f8))));
+
+  //顶部分割线
+  static const BOX_DECORATION_DIVIDER_TOP =
+      BoxDecoration(border: Border(top: BorderSide(color: Color(0xfff1f3f8))));
+
   //主题字体风格
-  static const STYLE_TEXT_14 =
-  TextStyle(color: Color(BaseTheme.BASE_TEXT), fontSize: 14.0,
+  static const STYLE_TEXT_14 = TextStyle(
+      color: Color(BaseTheme.BASE_TEXT),
+      fontSize: 14.0,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
-  static const STYLE_TEXT_13 =
-  TextStyle(color: Color(BaseTheme.BASE_TEXT), fontSize: 13.0,
+  static const STYLE_TEXT_13 = TextStyle(
+      color: Color(BaseTheme.BASE_TEXT),
+      fontSize: 13.0,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
-  static const STYLE_TEXT_12 =
-  TextStyle(color: Color(BaseTheme.BASE_TEXT), fontSize: 12.0,
+  static const STYLE_TEXT_12 = TextStyle(
+      color: Color(BaseTheme.BASE_TEXT),
+      fontSize: 12.0,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
-  static const STYLE_TEXT_15 =
-  TextStyle(color: Color(BaseTheme.BASE_TEXT), fontSize: 15.0,
+  static const STYLE_TEXT_15 = TextStyle(
+      color: Color(BaseTheme.BASE_TEXT),
+      fontSize: 15.0,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
-  static const STYLE_TEXT_16 =
-  TextStyle(color: Color(BaseTheme.BASE_TEXT), fontSize: 16.0,
+  static const STYLE_TEXT_16 = TextStyle(
+      color: Color(BaseTheme.BASE_TEXT),
+      fontSize: 16.0,
       decoration: TextDecoration.none,
       fontWeight: FontWeight.w400);
   static const STYLE_TEXT_15_WEIGHT = TextStyle(
@@ -89,12 +101,9 @@ class BaseTheme{
       fontWeight: FontWeight.w400);
 
   //提示hint文字样式
-  static const STYLE_TEXT_HINT_14 =
-  TextStyle(color: Color(0xffCDCDD7), fontSize: 14.0);
-  static const STYLE_TEXT_HINT_13 =
-  TextStyle(color: Color(0xffCDCDD7), fontSize: 13.0);
-  static const STYLE_TEXT_HINT_12 =
-  TextStyle(color: Color(0xffCDCDD7), fontSize: 12.0);
+  static const STYLE_TEXT_HINT_14 = TextStyle(color: Color(0xffCDCDD7), fontSize: 14.0);
+  static const STYLE_TEXT_HINT_13 = TextStyle(color: Color(0xffCDCDD7), fontSize: 13.0);
+  static const STYLE_TEXT_HINT_12 = TextStyle(color: Color(0xffCDCDD7), fontSize: 12.0);
 
   //灰色文字
   static const STYLE_TEXT_GRAY_12 = TextStyle(
@@ -114,10 +123,8 @@ class BaseTheme{
       fontWeight: FontWeight.w400);
 
   //白色文字
-  static const STYLE_TEXT_WHITE_12 =
-  TextStyle(color: Colors.white, fontSize: 12.0);
-  static const STYLE_TEXT_WHITE_13 =
-  TextStyle(color: Colors.white, fontSize: 13.0);
+  static const STYLE_TEXT_WHITE_12 = TextStyle(color: Colors.white, fontSize: 12.0);
+  static const STYLE_TEXT_WHITE_13 = TextStyle(color: Colors.white, fontSize: 13.0);
 
   // 下拉刷新样式
   static Header baseRefreshHeader() {
@@ -146,7 +153,7 @@ class BaseTheme{
             return Container(
               child: Center(
                 child: Text(
-                  noMoreStr==null?'到底了~':noMoreStr,
+                  noMoreStr == null ? '到底了~' : noMoreStr,
                   style: BaseTheme.STYLE_TEXT_GRAY_13,
                 ),
               ),
