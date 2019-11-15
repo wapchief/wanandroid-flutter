@@ -19,17 +19,20 @@ class Details extends StatelessWidget {
 //      print(url);
 //    });
     // TODO: implement build
-    return MaterialApp(
-      routes: {
-        "/": (_) => new WebviewScaffold(
-          url: url,
-//          appBar: BaseTheme.getAppBar(''),
-          withZoom: true,
-          withLocalStorage: true,
-          hidden: true,
-          debuggingEnabled: true,
-        ),
-      },
+    return Scaffold(
+      appBar: BaseTheme.getAppBar(''),
+      body: MaterialApp(
+        routes: {
+          "/": (_) => new WebviewScaffold(
+            url: url,
+            withZoom: true,
+            withLocalStorage: true,
+            hidden: true,
+            debuggingEnabled: true,
+            appCacheEnabled: true,
+          ),
+        },
+      ),
     );
   }
 }

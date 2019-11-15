@@ -17,7 +17,8 @@ Effect<HomeState> buildEffect() {
 //初始化数据
 void _init(Action action, Context<HomeState> ctx) {
   _onGetBanner(action, ctx);
-  _getHomeData(action, ctx);
+  _getHomeArticle(action, ctx);
+  _getTopArticle(action, ctx);
 }
 
 //请求网络获取轮播资源
@@ -36,18 +37,25 @@ void _onGetBanner(Action action, Context<HomeState> ctx) async {
 }
 
 //获取首页数据
-void _getHomeData(Action action, Context<HomeState> ctx) async {
+void _getHomeArticle(Action action, Context<HomeState> ctx) async {
   ResultEntity entity = await NetUtils.get('/article/list/0/json');
-//  List<ArticleEntity> list = new List();
   DatasEntity dataEntity = new DatasEntity();
   if (entity.errorCode == 0) {
     dataEntity = DatasEntity.fromJson(entity.data);
-    print('_getHomeData:' + dataEntity.toString());
-//    datasEntity.datas.forEach((v){
-//      list.add(v);
-//    });
   }
   ctx.dispatch(HomeActionCreator.onArticle(dataEntity));
+}
+
+//获取置顶文章
+void _getTopArticle(Action action,Context<HomeState> ctx) async {
+  ResultEntity entity = await NetUtils.get('/article/top/json');
+  List<ArticleEntity> dataEntity=new List();
+  if (entity.errorCode == 0) {
+    (entity.data as List).forEach((v){
+      dataEntity.add(ArticleEntity.fromJson(v));
+    });
+  }
+  ctx.dispatch(HomeActionCreator.onTopArticle(dataEntity));
 }
 
 void _onLoadData(Context<HomeState> ctx) {

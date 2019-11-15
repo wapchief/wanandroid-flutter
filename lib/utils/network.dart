@@ -1,13 +1,21 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:wan_android/model/result_entity.dart';
+import 'package:wan_android/utils/sp.dart';
 
 const BASE_URL = 'https://www.wanandroid.com';
 
 class NetUtils {
-
   static Future get(String url, {Map<String, dynamic> params}) async {
+    String userName = await SPUtils.getUserName();
+    String password = await SPUtils.getPassword();
+    List<Cookie> cookies = new List();
+    if (userName != null && userName != '' && password != null && password != '') {
+      cookies.add(Cookie('username', userName));
+      cookies.add(Cookie('password', password));
+    }
     //header配置
     BaseOptions options = BaseOptions(
       baseUrl: BASE_URL,
@@ -15,6 +23,7 @@ class NetUtils {
       headers: {
         'Content-Type': 'application/json',
       },
+      cookies: cookies,
     );
     var dio = new Dio(options);
     ResultEntity entity = new ResultEntity();

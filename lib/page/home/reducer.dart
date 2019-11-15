@@ -11,8 +11,15 @@ Reducer<HomeState> buildReducer() {
       HomeAction.loadData: _onLoadData,
       HomeAction.getBanner: _getBanner,
       HomeAction.getArticle:_getArticle,
+      HomeAction.getTopArticle:_getArticleTop,
     },
   );
+}
+HomeState _getArticleTop(HomeState state,Action action){
+  final List<ArticleEntity> dataEntity = action.payload ?? [];
+  final HomeState newState = state.clone();
+  newState.articleTopData = dataEntity;
+  return newState;
 }
 
 HomeState _getArticle(HomeState state,Action action){

@@ -6,6 +6,7 @@ class HomeState implements Cloneable<HomeState> {
   List<BannerState> listBanner;
   List<ItemState> listArt;
   DatasEntity articleData;
+  List<ArticleEntity> articleTopData;
 
 //  ValueChanged<BannerState> onBanner;
 
@@ -17,7 +18,8 @@ class HomeState implements Cloneable<HomeState> {
     return HomeState()
       ..listBanner = listBanner
       ..listArt = listArt
-      ..articleData = articleData;
+      ..articleData = articleData
+      ..articleTopData = articleTopData;
 
 //      ..onBanner = onBanner;
   }
